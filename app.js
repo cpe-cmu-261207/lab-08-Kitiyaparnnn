@@ -81,7 +81,7 @@ app.delete("/courses/:id", (req, res) => {
     // const DeleteId = myCourses.courses.filter(courses => courses.courseId !== +id)
     myCourses.courses.splice(FindId, 1)  //ตัด id ที่จะลบออกจาก courses
     calgpax()
-    fs.writeFileSync('./myCourses.json',JSON.stringify(myCourses,null,4))
+    fs.writeFileSync('./myCourses.json',JSON.stringify(myCourses,null,4)) //update ไฟล์ mycourses.json ตามที่ทำใน api
     res.status(200).json({
       success: true,
       data: myCourses
