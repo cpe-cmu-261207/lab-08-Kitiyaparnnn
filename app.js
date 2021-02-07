@@ -12,6 +12,12 @@ app.get("/", (req, res) => {
 });
 
 //implement your api here
+
+app.get("/courses", (req, res) => {
+  res.json({
+    data: "courses"
+  });
+});
 //follow instruction in http://localhost:8000/
 
 const port = process.env.PORT || 8000;
