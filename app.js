@@ -16,6 +16,8 @@ app.get("/", (req, res) => {
 //implement your api here
 const myCourses = require('./myCourses.json');
 const { json } = require("body-parser");
+
+//CalGPA
 const calgpax = () => {
   let GPAX = myCourses.courses.map(courses => {
     return {
@@ -39,7 +41,7 @@ const calgpax = () => {
   
 }
 
-
+//GET
 app.get("/courses", (req, res) => {
   res.json({
     success: true,
@@ -66,6 +68,7 @@ app.get("/courses/:id", (req, res) => {
   }
 });
 
+//DELETE
 app.delete("/courses/:id", (req, res) => {
   const { id } = req.params
   const FindId = myCourses.courses.findIndex(courses => courses.courseId === +id)
@@ -90,6 +93,7 @@ app.delete("/courses/:id", (req, res) => {
 
 })
 
+//POST
 app.post('/addCourse', (req, res) => {
   const Bodylength = Object.keys(req.body).length
   if (Bodylength !== 4) {
