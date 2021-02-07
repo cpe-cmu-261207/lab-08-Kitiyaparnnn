@@ -14,7 +14,8 @@ app.get("/", (req, res) => {
 });
 
 //implement your api here
-const myCourses = require('./myCourses.json')
+const myCourses = require('./myCourses.json');
+const { json } = require("body-parser");
 const calgpax = () => {
   let GPAX = myCourses.courses.map(courses => {
     return {
@@ -80,6 +81,7 @@ app.delete("/courses/:id", (req, res) => {
     // const DeleteId = myCourses.courses.filter(courses => courses.courseId !== +id)
     myCourses.courses.splice(FindId, 1)  //ตัด id ที่จะลบออกจาก courses
     calgpax()
+    fs.writeFileSync('./myCourses.json',JSON.stringify(myCourses,null,4))
     res.status(200).json({
       success: true,
       data: myCourses
@@ -99,6 +101,7 @@ app.post('/addCourse', (req, res) => {
   else {
     myCourses.courses.push(req.body)
     calgpax()
+    fs.writeFileSync('./myCourses.json',JSON.stringify(myCourses,null,4))
     res.status(201).json({
       success: true,
       data: req.body
@@ -110,5 +113,3 @@ app.post('/addCourse', (req, res) => {
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`server started on port:${port}`));
-
-//123456789
